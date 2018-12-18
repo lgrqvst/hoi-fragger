@@ -1,50 +1,61 @@
 import React, { Component } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTrashAlt,
-  faEdit,
-  faPlusSquare,
-  faCheckSquare,
-  faArrowDown,
-  faArrowUp,
-  faCaretSquareRight,
-  faStop,
-} from '@fortawesome/free-solid-svg-icons';
-// import { faMinusSquare } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
+import Actors from './components/Actors';
+import Titlebar from './components/Titlebar';
+import Controls from './components/Controls';
+import Prompt from './components/Prompt';
+import Splash from './components/Splash';
 
-import Actor from './components/Actor';
-
-import './App.css';
+const AppContainer = styled.div`
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 0 0 3rem;
+`;
 
 class App extends Component {
   state = {
     actors: [
       {
+        id: 0,
         name: 'vand4l',
-        initiative: 13,
+        initiative: 0,
       },
       {
+        id: 1,
         name: 'Flick',
-        initiative: 12,
+        initiative: 0,
       },
       {
+        id: 2,
         name: 'Chrome Blue',
-        initiative: 14,
+        initiative: 0,
       },
       {
+        id: 3,
         name: 'Edge',
-        initiative: 27,
+        initiative: 0,
       },
       {
+        id: 4,
         name: 'Plug',
-        initiative: 12,
+        initiative: 0,
       },
       {
+        id: 5,
         name: 'Pomph',
-        initiative: 13,
+        initiative: 0,
+      },
+      {
+        id: 6,
+        name: 'The Enemy',
+        initiative: 0,
       },
     ],
+    addingNewActor: false,
+    current: null,
     mode: 'input',
   };
 
@@ -54,76 +65,149 @@ class App extends Component {
     });
   }
 
-  handleSetInitiative = (actor) => {
-    console.log(`Set initiative of ${actor}!`);
+  handleSetInitiative = (name) => {
+    console.log(`Set initiative of ${name}!`);
   };
 
-  render() {
-    let { actors, mode } = this.state;
+  handleReset = () => {
+    const actors = [];
+    this.setState({
+      actors,
+    });
+  };
 
-    actors = actors
-      .sort((a, b) => {
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return 0;
-      })
-      .map(el => (
-        <Actor
-          key={el.name}
-          name={el.name}
-          initiative={el.initiative}
-          clicked={() => this.handleSetInitiative(el.name)}
-        />
-      ));
+  handleLoadDefaultActors = () => {
+    const actors = [
+      {
+        id: 0,
+        name: 'vand4l',
+        initiative: 0,
+      },
+      {
+        id: 1,
+        name: 'Flick',
+        initiative: 0,
+      },
+      {
+        id: 2,
+        name: 'Chrome Blue',
+        initiative: 0,
+      },
+      {
+        id: 3,
+        name: 'Edge',
+        initiative: 0,
+      },
+      {
+        id: 4,
+        name: 'Plug',
+        initiative: 0,
+      },
+      {
+        id: 5,
+        name: 'Pomph',
+        initiative: 0,
+      },
+      {
+        id: 6,
+        name: 'The Enemy',
+        initiative: 0,
+      },
+    ];
+    this.setState({ actors });
+  };
+
+  handleShowHideAddActor = () => {
+    this.setState(prevState => ({
+      addingNewActor: !prevState.addingNewActor,
+    }));
+  };
+
+  handleAddActor = (e) => {
+    e.preventDefault();
+    this.handleShowHideAddActor();
+    const actor = {
+      id: Date.now(),
+      name: e.target.promptInput.value,
+      initiative: 0,
+    };
+    const actors = [...this.state.actors];
+    actors.push(actor);
+    this.setState({
+      actors,
+    });
+  };
+
+  handleEditActor = (event, id) => {
+    const actors = [...this.state.actors].filter((actor) => {
+      if (actor.id === id) {
+        actor.name = event.target.value;
+      }
+      return actor;
+    });
+    this.setState({
+      actors,
+    });
+  };
+
+  handleRemoveActor = (id) => {
+    const actors = [...this.state.actors].filter((actor) => {
+      if (actor.id !== id) {
+        return actor;
+      }
+      return false;
+    });
+    this.setState({
+      actors,
+    });
+  };
+
+  handleNextActor = () => {
+    console.log('Set next actor to current');
+  };
+
+  handlePreviousActor = () => {
+    console.log('Set previous actor to current');
+  };
+
+  handle;
+
+  render() {
+    const { actors, mode, addingNewActor } = this.state;
+
+    const classes = ['App', `App--${mode}`];
 
     return (
-      <div className="App">
-        {actors.length === 0 && <p>Add some actors.</p>}
-        <div className="titlebar">Hoi, fragger!</div>
-        <ul>{actors}</ul>
-        {mode === 'input' && (
-          <button type="button" onClick={() => this.setMode('edit')}>
-            <FontAwesomeIcon icon={faEdit} />
-          </button>
-        )}
-        {mode === 'input' && (
-          <button type="button" onClick={() => this.setMode('tracking')}>
-            <FontAwesomeIcon icon={faCaretSquareRight} />
-          </button>
+      <AppContainer className={classes.join(' ')}>
+        <Titlebar />
+
+        {actors.length === 0 && <Splash loadDefault={this.handleLoadDefaultActors} />}
+
+        {addingNewActor && (
+          <Prompt close={this.handleShowHideAddActor} confirm={this.handleAddActor}>
+            Name of actor:
+          </Prompt>
         )}
 
-        {mode === 'edit' && (
-          <button type="button">
-            <FontAwesomeIcon icon={faTrashAlt} />
-          </button>
-        )}
-        {mode === 'edit' && (
-          <button type="button">
-            <FontAwesomeIcon icon={faPlusSquare} />
-          </button>
-        )}
-        {mode === 'edit' && (
-          <button type="button" onClick={() => this.setMode('input')}>
-            <FontAwesomeIcon icon={faCheckSquare} />
-          </button>
-        )}
+        <Actors
+          actors={actors}
+          mode={mode}
+          editActor={this.handleEditActor}
+          removeActor={this.handleRemoveActor}
+          setInitiative={this.handleSetInitiative}
+        />
 
-        {mode === 'tracking' && (
-          <button type="button">
-            <FontAwesomeIcon icon={faArrowDown} />
-          </button>
-        )}
-        {mode === 'tracking' && (
-          <button type="button">
-            <FontAwesomeIcon icon={faArrowUp} />
-          </button>
-        )}
-        {mode === 'tracking' && (
-          <button type="button" onClick={() => this.setMode('input')}>
-            <FontAwesomeIcon icon={faStop} />
-          </button>
-        )}
-      </div>
+        <Controls
+          mode={mode}
+          setModeInput={() => this.setMode('input')}
+          setModeEdit={() => this.setMode('edit')}
+          setModeTracking={() => this.setMode('tracking')}
+          reset={this.handleReset}
+          addActor={this.handleShowHideAddActor}
+          nextActor={this.handleNextActor}
+          previousActor={this.handlePreviousActor}
+        />
+      </AppContainer>
     );
   }
 }
