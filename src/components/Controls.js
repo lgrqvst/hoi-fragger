@@ -24,7 +24,7 @@ const Controls = styled.div`
   align-items: center;
   padding: 0.25rem;
   background: white;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
 
   button {
     position: relative;

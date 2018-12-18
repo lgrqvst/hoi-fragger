@@ -7,6 +7,7 @@ const Titlebar = styled.div`
   color: white;
   padding: 0.5em 0;
   text-align: center;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
 `;
 
 const titlebar = () => <Titlebar>Hoi, fragger!</Titlebar>;
