@@ -114,7 +114,7 @@ class App extends Component {
         initiative: 0,
       },
     ];
-    this.setState({ actors });
+    this.setState({ actors, mode: 'input' });
   };
 
   handleShowHideAddActor = () => {

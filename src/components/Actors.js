@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import Actor from './Actor';
 
 const ActorList = styled.div`
-  margin: 1rem;
+  margin: 1rem 0;
 `;
 
-const actors = (props) => {
+const actorList = (props) => {
   let { actors } = props;
   const {
     mode, setInitiative, removeActor, editActor,
@@ -16,8 +16,8 @@ const actors = (props) => {
 
   actors = actors
     .sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
       return 0;
     })
     .map(el => (
@@ -36,4 +36,4 @@ const actors = (props) => {
   return <ActorList>{actors}</ActorList>;
 };
 
-export default actors;
+export default actorList;
