@@ -39,6 +39,7 @@ const Prompt = styled.div`
     background: rgba(0, 0, 0, 0.25);
     margin: 0 1rem 0 auto;
     padding: 0.5rem;
+    border: 0;
   }
 `;
 
@@ -55,6 +56,7 @@ const CloseButton = styled.button`
   font-size: 1.5rem;
   padding: 0.25rem;
   width: 2rem;
+  border: 0;
 
   &:before {
     content: '';

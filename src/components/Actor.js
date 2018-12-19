@@ -11,8 +11,8 @@ const ActorRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
+  margin: 0.25rem 0;
+  padding: 0.25rem;
   background: #efefef;
   border-radius: 0.25rem;
   transition: 0.25s;

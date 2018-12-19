@@ -33,6 +33,7 @@ const Controls = styled.div`
     padding: 0;
     background: black;
     border-radius: 100px
+    border: 0;
     color: white;
 
     &:before {
