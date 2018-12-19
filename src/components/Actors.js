@@ -11,27 +11,35 @@ const ActorList = styled.div`
 const actorList = (props) => {
   let { actors } = props;
   const {
-    mode, setInitiative, removeActor, editActor,
+    mode, showInitiativeSpinner, removeActor, editActor,
   } = props;
 
-  actors = actors
-    .sort((a, b) => {
+  if (mode !== 'tracking') {
+    actors = actors.sort((a, b) => {
       if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
       if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
       return 0;
-    })
-    .map(el => (
-      <Actor
-        key={el.id}
-        id={el.id}
-        name={el.name}
-        initiative={el.initiative}
-        mode={mode}
-        setInitiative={setInitiative}
-        removeActor={removeActor}
-        editActor={editActor}
-      />
-    ));
+    });
+  } else {
+    actors = actors.sort((a, b) => {
+      if (a.initiative > b.initiative) return -1;
+      if (a.initiative < b.initiative) return 1;
+      return 0;
+    });
+  }
+
+  actors = actors.map(el => (
+    <Actor
+      key={el.id}
+      id={el.id}
+      name={el.name}
+      initiative={el.initiative}
+      mode={mode}
+      showInitiativeSpinner={showInitiativeSpinner}
+      removeActor={removeActor}
+      editActor={editActor}
+    />
+  ));
 
   return <ActorList>{actors}</ActorList>;
 };

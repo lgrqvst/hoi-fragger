@@ -70,12 +70,22 @@ const ActorName = styled.input`
     `}
 `;
 
+const ActorNameScreen = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+`;
+
 const ActorInitiative = styled.div`
   font-size: 1.25rem;
 `;
 
 const ButtonSetInitiative = styled.button`
   position: absolute;
+  z-index: 15;
   overflow: hidden;
   top: 0;
   left: 0;
@@ -93,16 +103,14 @@ const ButtonSetInitiative = styled.button`
 
 const actor = (props) => {
   const {
-    mode, name, id, initiative, setInitiative, editActor, removeActor,
+    mode, name, id, initiative, showInitiativeSpinner, editActor, removeActor,
   } = props;
 
   return (
     <ActorRow mode={mode}>
-      {/* {mode === 'edit' && ( */}
       <ButtonRemoveActor type="button" onClick={() => removeActor(id)} mode={mode}>
         <FontAwesomeIcon icon={faTimesCircle} />
       </ButtonRemoveActor>
-      {/* )} */}
       <ActorRowInner mode={mode}>
         <ActorName type="text" value={name} onChange={event => editActor(event, id)} mode={mode} />
 
@@ -110,8 +118,10 @@ const actor = (props) => {
           <span>{initiative}</span>
         </ActorInitiative>
 
+        {mode !== 'edit' && <ActorNameScreen />}
+
         {mode === 'input' && (
-          <ButtonSetInitiative type="button" onClick={() => setInitiative(id)}>
+          <ButtonSetInitiative type="button" onClick={() => showInitiativeSpinner(id)}>
             <span>Set initiative</span>
           </ButtonSetInitiative>
         )}

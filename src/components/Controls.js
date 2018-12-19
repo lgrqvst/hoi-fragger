@@ -14,7 +14,7 @@ import {
 
 import styled from 'styled-components';
 
-const Controls = styled.div`
+const ControlBar = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -52,6 +52,18 @@ const Controls = styled.div`
   }
 `;
 
+// const Button = styled.button``;
+
+// const ButtonBar = styled(Button)``;
+
+// const ButtonLarge = styled(Button)``;
+
+// const ButtonAddActor = styled(ButtonLarge)``;
+// const ButtonReset = styled(Button)``;
+
+// const ButtonNextActor = styled(ButtonLarge)``;
+// const ButtonPreviousActor = styled(Button)``;
+
 const controls = (props) => {
   const {
     mode,
@@ -64,7 +76,7 @@ const controls = (props) => {
     previousActor,
   } = props;
   return (
-    <Controls>
+    <ControlBar>
       {mode === 'input' && (
         <button type="button" onClick={setModeEdit}>
           <span>
@@ -123,7 +135,7 @@ const controls = (props) => {
           </span>
         </button>
       )}
-    </Controls>
+    </ControlBar>
   );
 };
 

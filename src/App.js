@@ -6,6 +6,7 @@ import Titlebar from './components/Titlebar';
 import Controls from './components/Controls';
 import Prompt from './components/Prompt';
 import Splash from './components/Splash';
+import InitiativeSpinner from './components/InitiativeSpinner';
 
 const AppContainer = styled.div`
   position: relative;
@@ -55,7 +56,9 @@ class App extends Component {
       },
     ],
     addingNewActor: false,
-    current: null,
+    settingInitiative: false,
+    settingInitiativeOf: null,
+    // current: null,
     mode: 'input',
   };
 
@@ -64,10 +67,6 @@ class App extends Component {
       mode,
     });
   }
-
-  handleSetInitiative = (name) => {
-    console.log(`Set initiative of ${name}!`);
-  };
 
   handleReset = () => {
     const actors = [];
@@ -110,7 +109,7 @@ class App extends Component {
       },
       {
         id: 6,
-        name: 'The Enemy',
+        name: 'Bad Guys',
         initiative: 0,
       },
     ];
@@ -162,6 +161,29 @@ class App extends Component {
     });
   };
 
+  handleShowHideInitiativeSpinner = (id) => {
+    this.setState(prevState => ({
+      settingInitiative: !prevState.settingInitiative,
+      settingInitiativeOf: prevState.settingInitiative ? null : id,
+    }));
+  };
+
+  setInitiative = (id, initiative) => {
+    // console.log(`Setting initiative of ${id} to ${initiative}`);
+
+    const actors = [...this.state.actors].filter((actor) => {
+      if (actor.id === id) {
+        actor.initiative = initiative;
+      }
+      return actor;
+    });
+    this.setState({
+      actors,
+    });
+
+    this.handleShowHideInitiativeSpinner();
+  };
+
   handleNextActor = () => {
     console.log('Set next actor to current');
   };
@@ -173,7 +195,9 @@ class App extends Component {
   handle;
 
   render() {
-    const { actors, mode, addingNewActor } = this.state;
+    const {
+      actors, mode, addingNewActor, settingInitiative, settingInitiativeOf,
+    } = this.state;
 
     const classes = ['App', `App--${mode}`];
 
@@ -194,8 +218,17 @@ class App extends Component {
           mode={mode}
           editActor={this.handleEditActor}
           removeActor={this.handleRemoveActor}
-          setInitiative={this.handleSetInitiative}
+          showInitiativeSpinner={this.handleShowHideInitiativeSpinner}
         />
+
+        {settingInitiative && (
+          <InitiativeSpinner
+            id={settingInitiativeOf}
+            hideInitiativeSpinner={this.handleShowHideInitiativeSpinner}
+            setInitiative={this.setInitiative}
+            actors={actors}
+          />
+        )}
 
         <Controls
           mode={mode}
