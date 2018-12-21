@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Titlebar = styled.div`
+  position: relative;
+  z-index: 10;
   background: black;
   color: white;
   padding: 0.5em 0;

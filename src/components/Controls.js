@@ -9,6 +9,7 @@ import {
   faArrowUp,
   faPlay,
   faArrowAltCircleRight,
+  faArrowAltCircleLeft,
   faEraser,
   faHandPeace,
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +21,7 @@ const transitionTiming = '0.5s cubic-bezier(1, 0, 0.17, 1.4)';
 
 const ControlBar = styled.div`
   position: fixed;
+  z-index: 10;
   bottom: 0;
   left: 0;
   display: flex;
@@ -60,6 +62,7 @@ const ControlBar = styled.div`
 const Button = styled.button`
   apperance: none;
   position: fixed;
+  z-index: 15;
   width: 3rem;
   border: 0;
   padding: 0;
@@ -171,6 +174,16 @@ const ButtonNextRound = styled(Button)`
     `}
 `;
 
+const ButtonPreviousRound = styled(Button)`
+  right: -3rem;
+  bottom: 8.5rem;
+  transition: right ${transitionTiming};
+  ${props => props.mode === 'tracking'
+    && css`
+      right: 1rem;
+    `}
+`;
+
 const controls = (props) => {
   const {
     mode,
@@ -182,6 +195,8 @@ const controls = (props) => {
     addActor,
     nextActor,
     previousActor,
+    nextTurn,
+    previousTurn,
   } = props;
   return (
     <>
@@ -205,38 +220,43 @@ const controls = (props) => {
         </ButtonBar>
       </ControlBar>
 
-      <ButtonReset type="button" mode={mode}>
+      <ButtonReset type="button" mode={mode} onClick={reset}>
         <span>
-          <FontAwesomeIcon icon={faTrashAlt} onClick={reset} />
+          <FontAwesomeIcon icon={faTrashAlt} />
         </span>
       </ButtonReset>
-      <ButtonAddActor type="button" mode={mode}>
+      <ButtonAddActor type="button" mode={mode} onClick={addActor}>
         <span>
-          <FontAwesomeIcon icon={faPlusSquare} onClick={addActor} />
+          <FontAwesomeIcon icon={faPlusSquare} />
         </span>
       </ButtonAddActor>
 
-      <ButtonSoftReset type="button" mode={mode}>
+      <ButtonSoftReset type="button" mode={mode} onClick={softReset}>
         <span>
-          <FontAwesomeIcon icon={faEraser} onClick={softReset} />
+          <FontAwesomeIcon icon={faEraser} />
         </span>
       </ButtonSoftReset>
 
-      <ButtonNextActor type="button" mode={mode}>
+      <ButtonNextActor type="button" mode={mode} onClick={nextActor}>
         <span>
-          <FontAwesomeIcon icon={faArrowDown} onClick={nextActor} />
+          <FontAwesomeIcon icon={faArrowDown} />
         </span>
       </ButtonNextActor>
-      <ButtonPreviousActor type="button" mode={mode}>
+      <ButtonPreviousActor type="button" mode={mode} onClick={previousActor}>
         <span>
-          <FontAwesomeIcon icon={faArrowUp} onClick={previousActor} />
+          <FontAwesomeIcon icon={faArrowUp} />
         </span>
       </ButtonPreviousActor>
-      <ButtonNextRound type="button" mode={mode}>
+      <ButtonNextRound type="button" mode={mode} onClick={nextTurn}>
         <span>
-          <FontAwesomeIcon icon={faArrowAltCircleRight} onClick={previousActor} />
+          <FontAwesomeIcon icon={faArrowAltCircleRight} />
         </span>
       </ButtonNextRound>
+      <ButtonPreviousRound type="button" mode={mode} onClick={previousTurn}>
+        <span>
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+        </span>
+      </ButtonPreviousRound>
     </>
   );
 };

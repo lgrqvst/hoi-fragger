@@ -21,11 +21,24 @@ const ActorRowInner = styled.div`
   padding: 0.25rem 0.5rem 0.25rem 0.25rem;
   background: #efefef;
   border-radius: 0.25rem;
+  opacity: 1;
   transition: 0.25s;
 
   ${props => props.mode === 'edit'
     && css`
       left: 2rem;
+    `}
+
+  ${props => props.current === true
+    && css`
+      background: orange;
+    `}
+
+  ${props => props.willgo === true && css``}
+
+  ${props => props.went === true
+    && css`
+      opacity: 0.5;
     `}
 `;
 
@@ -103,7 +116,16 @@ const ButtonSetInitiative = styled.button`
 
 const actor = (props) => {
   const {
-    mode, name, id, initiative, showInitiativeSpinner, editActor, removeActor,
+    mode,
+    name,
+    id,
+    initiative,
+    showInitiativeSpinner,
+    editActor,
+    removeActor,
+    current,
+    went,
+    willgo,
   } = props;
 
   return (
@@ -111,7 +133,7 @@ const actor = (props) => {
       <ButtonRemoveActor type="button" onClick={() => removeActor(id)} mode={mode}>
         <FontAwesomeIcon icon={faTimesCircle} />
       </ButtonRemoveActor>
-      <ActorRowInner mode={mode}>
+      <ActorRowInner mode={mode} current={current} willgo={willgo} went={went}>
         <ActorName type="text" value={name} onChange={event => editActor(event, id)} mode={mode} />
 
         <ActorInitiative>

@@ -5,13 +5,15 @@ import styled from 'styled-components';
 import Actor from './Actor';
 
 const ActorList = styled.div`
+  position: relative;
+  z-index: 10;
   margin: 1rem 0;
 `;
 
 const actorList = (props) => {
   let { actors } = props;
   const {
-    mode, showInitiativeSpinner, removeActor, editActor,
+    mode, showInitiativeSpinner, removeActor, editActor, current,
   } = props;
 
   if (mode !== 'tracking') {
@@ -21,11 +23,13 @@ const actorList = (props) => {
       return 0;
     });
   } else {
-    actors = actors.sort((a, b) => {
-      if (a.initiative > b.initiative) return -1;
-      if (a.initiative < b.initiative) return 1;
-      return 0;
-    });
+    actors = actors
+      .sort((a, b) => {
+        if (a.initiative > b.initiative) return -1;
+        if (a.initiative < b.initiative) return 1;
+        return 0;
+      })
+      .filter(actor => actor.initiative > 0);
   }
 
   actors = actors.map(el => (
@@ -38,6 +42,9 @@ const actorList = (props) => {
       showInitiativeSpinner={showInitiativeSpinner}
       removeActor={removeActor}
       editActor={editActor}
+      current={el.initiative === current}
+      willgo={el.initiative < current && current !== null}
+      went={el.initiative > current && current !== null}
     />
   ));
 

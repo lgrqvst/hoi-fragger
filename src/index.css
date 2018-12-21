@@ -1,4 +1,5 @@
 body {
   height: 100vh;
   overscroll-behavior: none;
+  background: black;
 }
