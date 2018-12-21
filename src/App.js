@@ -20,13 +20,8 @@ class App extends Component {
   state = {
     actors: [
       {
-        id: 0,
-        name: 'vand4l',
-        initiative: 0,
-      },
-      {
         id: 1,
-        name: 'Flick',
+        name: 'Bad Guys',
         initiative: 0,
       },
       {
@@ -41,17 +36,22 @@ class App extends Component {
       },
       {
         id: 4,
-        name: 'Plug',
+        name: 'Flick',
         initiative: 0,
       },
       {
         id: 5,
-        name: 'Pomph',
+        name: 'Plug',
         initiative: 0,
       },
       {
         id: 6,
-        name: 'The Enemy',
+        name: 'Pomph',
+        initiative: 0,
+      },
+      {
+        id: 7,
+        name: 'vand4l',
         initiative: 0,
       },
     ],
@@ -75,16 +75,22 @@ class App extends Component {
     });
   };
 
+  handleSoftReset = () => {
+    const actors = [...this.state.actors].map((actor) => {
+      const a = { ...actor };
+      a.initiative = 0;
+      return a;
+    });
+    this.setState({
+      actors,
+    });
+  };
+
   handleLoadDefaultActors = () => {
     const actors = [
       {
-        id: 0,
-        name: 'vand4l',
-        initiative: 0,
-      },
-      {
         id: 1,
-        name: 'Flick',
+        name: 'Bad Guys',
         initiative: 0,
       },
       {
@@ -99,17 +105,22 @@ class App extends Component {
       },
       {
         id: 4,
-        name: 'Plug',
+        name: 'Flick',
         initiative: 0,
       },
       {
         id: 5,
-        name: 'Pomph',
+        name: 'Plug',
         initiative: 0,
       },
       {
         id: 6,
-        name: 'Bad Guys',
+        name: 'Pomph',
+        initiative: 0,
+      },
+      {
+        id: 7,
+        name: 'vand4l',
         initiative: 0,
       },
     ];
@@ -236,6 +247,7 @@ class App extends Component {
           setModeEdit={() => this.setMode('edit')}
           setModeTracking={() => this.setMode('tracking')}
           reset={this.handleReset}
+          softReset={this.handleSoftReset}
           addActor={this.handleShowHideAddActor}
           nextActor={this.handleNextActor}
           previousActor={this.handlePreviousActor}
