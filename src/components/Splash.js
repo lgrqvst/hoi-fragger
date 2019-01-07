@@ -17,17 +17,23 @@ const Splash = styled.div`
   }
 `;
 
+const LoadDefault = styled.a`
+  text-decoration: underline;
+  color: black;
+`;
+
 const splash = (props) => {
+  const { type } = props;
   let msg = '';
-  if (props.type === 'empty') {
+  if (type === 'empty') {
     msg = (
       <p>
         Add some actors. Click edit to add some one by one, or
         {' '}
-        <span onClick={props.loadDefault}>load the default set.</span>
+        <LoadDefault onClick={props.loadDefault}>load the default set.</LoadDefault>
       </p>
     );
-  } else if (props.type === 'allzero') {
+  } else if (type === 'allzero') {
     msg = <p>No actors with initiative over 0.</p>;
   }
   return <Splash>{msg}</Splash>;
