@@ -1,1 +1,0 @@
-{"version":3,"sources":["/Users/tryhard/Johan/lgrqvst/hoi-fraggers/src/index.css"],"names":[],"mappings":"AAAA,KACE,aAAc,AACd,yBAA0B,AAA1B,yBAA0B,AAC1B,eAAkB,CACnB","file":"main.a269c8e3.chunk.css","sourcesContent":["body {\n  height: 100vh;\n  overscroll-behavior: none;\n  background: black;\n}\n"]}
