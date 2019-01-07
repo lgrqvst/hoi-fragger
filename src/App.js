@@ -244,8 +244,6 @@ class App extends Component {
   };
 
   setInitiative = (id, initiative) => {
-    // console.log(`Setting initiative of ${id} to ${initiative}`);
-
     const actors = [...this.state.actors].filter((actor) => {
       if (actor.id === id) {
         actor.initiative = initiative;
@@ -291,7 +289,6 @@ class App extends Component {
 
     if (validActors.length > 0) {
       const previous = validActors[validActors.length - 1].initiative;
-      console.log(previous);
       this.setState({
         current: previous,
       });

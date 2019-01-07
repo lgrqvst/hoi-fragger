@@ -61,8 +61,8 @@ const Indicators = styled.div`
   width: 75%;
   height: 100%;
   transform: translateX(-50%);
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  // border-top: 1px solid black;
+  // border-bottom: 1px solid black;
 
   &:before,
   &:after {
@@ -74,7 +74,7 @@ const Indicators = styled.div`
     height: 0;
     border-right: 0.25rem solid transparent;
     border-left: 0.25rem solid transparent;
-    border-top: 2rem solid black;
+    border-top: 0.25rem solid black;
     transform: translateX(-50%);
   }
 
@@ -84,7 +84,7 @@ const Indicators = styled.div`
     border-top: 0;
     border-right: 0.25rem solid transparent;
     border-left: 0.25rem solid transparent;
-    border-bottom: 2rem solid black;
+    border-bottom: 0.25rem solid black;
   }
 `;
 
@@ -112,20 +112,36 @@ const CurrentNumber = styled.div`
   position: absolute;
   z-index: 15;
   left: 50%;
-  top: 50%;
+  // top: 50%;
+  bottom: 100%;
   transform: translate(-50%, -50%);
-  width: 3rem;
-  border: 2px solid black;
-  border-radius: 0.25rem;
-  background: white;
-  padding: 0.5rem 0;
-  font-size 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 6rem;
+  background: black;
+  color: white;
+  font-size 1.5rem;
+  line-height: 1;
 `;
 
 class initiativeSpinner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.scrollRef = React.createRef();
+  }
+
   state = {
     initiative: 0,
   };
+
+  componentDidMount() {
+    const { id, actors } = this.props;
+    const actor = actors.filter(el => el.id === id)[0];
+    this.scrollRef.current.scrollLeft = actor.initiative * 32 + 16;
+  }
 
   storeInitiative = (i) => {
     let initiative = i;
@@ -141,12 +157,8 @@ class initiativeSpinner extends React.Component {
   };
 
   render() {
-    const {
-      id, hideInitiativeSpinner, setInitiative, actors,
-    } = this.props;
+    const { id, hideInitiativeSpinner, setInitiative } = this.props;
     const { initiative } = this.state;
-
-    const actor = actors.filter(el => el.id === id)[0];
 
     const tracknumbers = [...Array(101).keys()].map(el => <TrackNumber key={el}>{el}</TrackNumber>);
 
@@ -154,14 +166,11 @@ class initiativeSpinner extends React.Component {
       <>
         <Overlay click={hideInitiativeSpinner} />
         <InitiativeSpinner>
-          <h3>
-            Set initiative of
-            {` ${actor.name}`}
-          </h3>
           <Spinner>
             <Indicators />
             <CurrentNumber>{initiative}</CurrentNumber>
             <Track
+              ref={this.scrollRef}
               onScroll={(e) => {
                 this.storeInitiative(Math.floor(e.target.scrollLeft / 32));
               }}
