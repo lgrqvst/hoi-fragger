@@ -10,6 +10,8 @@ const Titlebar = styled.div`
   padding: 0.5em 0;
   text-align: center;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
 `;
 
 const titlebar = () => <Titlebar>Hoi, fragger!</Titlebar>;

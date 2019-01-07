@@ -15,6 +15,7 @@ const InitiativeSpinner = styled.div`
   background: white;
   text-align: center;
   transform: translateY(-50%);
+  font-family: 'Dosis', sans-serif;
 
   h3 {
     margin: 0 0 1rem;

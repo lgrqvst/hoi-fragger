@@ -8,6 +8,7 @@ const ActorList = styled.div`
   position: relative;
   z-index: 10;
   margin: 1rem 0;
+  padding: 0 0 7rem 0;
 `;
 
 const actorList = (props) => {

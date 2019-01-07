@@ -94,6 +94,7 @@ const ActorNameScreen = styled.div`
 
 const ActorInitiative = styled.div`
   font-size: 1.25rem;
+  font-family: 'Dosis', sans-serif;
 `;
 
 const ButtonSetInitiative = styled.button`

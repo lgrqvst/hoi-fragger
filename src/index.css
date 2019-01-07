@@ -2,4 +2,5 @@ body {
   height: 100vh;
   overscroll-behavior: none;
   background: black;
+  font-family: 'Merriweather Sans', serif;
 }
