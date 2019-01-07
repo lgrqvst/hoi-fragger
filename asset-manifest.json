@@ -1,7 +1,7 @@
 {
   "main.css": "/hoi-fragger/static/css/main.cb1129b4.chunk.css",
-  "main.js": "/hoi-fragger/static/js/main.e5e90b49.chunk.js",
-  "main.js.map": "/hoi-fragger/static/js/main.e5e90b49.chunk.js.map",
+  "main.js": "/hoi-fragger/static/js/main.ccc3b988.chunk.js",
+  "main.js.map": "/hoi-fragger/static/js/main.ccc3b988.chunk.js.map",
   "static/js/1.be324891.chunk.js": "/hoi-fragger/static/js/1.be324891.chunk.js",
   "static/js/1.be324891.chunk.js.map": "/hoi-fragger/static/js/1.be324891.chunk.js.map",
   "runtime~main.js": "/hoi-fragger/static/js/runtime~main.9e43728c.js",
@@ -9,6 +9,6 @@
   "static/media/bulge.svg": "/hoi-fragger/static/media/bulge.8c680e74.svg",
   "static/css/main.cb1129b4.chunk.css.map": "/hoi-fragger/static/css/main.cb1129b4.chunk.css.map",
   "index.html": "/hoi-fragger/index.html",
-  "precache-manifest.88597541eb9ad6664d27d258cff82be3.js": "/hoi-fragger/precache-manifest.88597541eb9ad6664d27d258cff82be3.js",
+  "precache-manifest.3120a3401eb9c7e03c99522feeba4904.js": "/hoi-fragger/precache-manifest.3120a3401eb9c7e03c99522feeba4904.js",
   "service-worker.js": "/hoi-fragger/service-worker.js"
 }
