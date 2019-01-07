@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 
-import styled, { css } from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import Actors from './components/Actors';
 import Titlebar from './components/Titlebar';
 import Controls from './components/Controls';
 import Prompt from './components/Prompt';
 import Splash from './components/Splash';
 import InitiativeSpinner from './components/InitiativeSpinner';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    height: 100vh;
+    overscroll-behavior: none;
+    background: black;
+    font-family: 'Merriweather Sans', serif;
+  }
+`;
 
 const transitionTiming = '0.5s cubic-bezier(1, 0, 0.17, 1.4)';
 
@@ -362,6 +371,7 @@ class App extends Component {
 
     return (
       <AppContainer mode={mode}>
+        <GlobalStyle />
         <Titlebar />
 
         {actors.length === 0 && <Splash type="empty" loadDefault={this.handleLoadDefaultActors} />}
