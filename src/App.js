@@ -187,41 +187,6 @@ class App extends Component {
         name: 'vand4l',
         initiative: 0,
       },
-      {
-        id: 8,
-        name: 'Blaze',
-        initiative: 0,
-      },
-      {
-        id: 9,
-        name: 'Friction',
-        initiative: 0,
-      },
-      {
-        id: 10,
-        name: 'Scorn',
-        initiative: 0,
-      },
-      {
-        id: 11,
-        name: 'Frenzy',
-        initiative: 0,
-      },
-      {
-        id: 12,
-        name: 'Widow',
-        initiative: 0,
-      },
-      {
-        id: 13,
-        name: 'Poltergeist',
-        initiative: 0,
-      },
-      {
-        id: 14,
-        name: 'The woman variously known as "Moth," "Ingrid," and "Scramble"',
-        initiative: 0,
-      },
     ];
     this.setState({ actors });
   };
