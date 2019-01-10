@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/hoi-fragger/precache-manifest.e14bcdd5958a6c0d2f94a35fd9853ac2.js"
+  "/hoi-fragger/precache-manifest.ab3317910fac640aac1e6f632cea5cf2.js"
 );
 
 workbox.clientsClaim();

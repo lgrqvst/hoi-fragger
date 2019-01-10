@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/hoi-fragger/static/js/1.b0773912.chunk.js"
   },
   {
-    "revision": "959317ff3f8c9c8698fea0bdd9899a05",
+    "revision": "4fa8402bbaf79586a8f11f8bbdcbc9ca",
     "url": "/hoi-fragger/index.html"
   }
 ];
