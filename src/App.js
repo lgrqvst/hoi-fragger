@@ -24,7 +24,7 @@ const AppContainer = styled.div`
   height: 100vh;
   overflow: hidden;
   overflow-y: auto;
-  padding: 0 0 3rem;
+  padding: 3rem 0;
   background-color: #abe9cd;;
   background-image: linear-gradient(-20deg, 
       rgba(255,255,255,0) 33%, 
@@ -123,6 +123,12 @@ class App extends Component {
     mode: 'input',
   };
 
+  componentDidMount() {
+    // console.log(localStorage.actors ? JSON.parse(localStorage.actors) : 'No actors saved');
+    // localStorage.clear();
+    this.handleLoadStoredActors();
+  }
+
   setMode(mode) {
     let current = null;
     if (mode === 'tracking' && this.state.actors.length > 0) {
@@ -144,6 +150,7 @@ class App extends Component {
     this.setState({
       actors,
     });
+    localStorage.clear();
   };
 
   handleSoftReset = () => {
@@ -154,9 +161,16 @@ class App extends Component {
     });
     this.setState({
       actors,
-      mode: 'input',
       current: null,
     });
+    localStorage.setItem('actors', JSON.stringify(actors));
+  };
+
+  handleLoadStoredActors = () => {
+    if (localStorage.actors) {
+      const actors = JSON.parse(localStorage.actors);
+      this.setState({ actors });
+    }
   };
 
   handleLoadDefaultActors = () => {
@@ -198,6 +212,7 @@ class App extends Component {
       },
     ];
     this.setState({ actors });
+    localStorage.setItem('actors', JSON.stringify(actors));
   };
 
   handleShowHideAddActor = () => {
@@ -219,6 +234,9 @@ class App extends Component {
     this.setState({
       actors,
     });
+    console.log(actors, JSON.parse(localStorage.actors));
+    localStorage.setItem('actors', JSON.stringify(actors));
+    console.log(actors, JSON.parse(localStorage.actors));
   };
 
   handleEditActor = (event, id) => {
@@ -231,6 +249,7 @@ class App extends Component {
     this.setState({
       actors,
     });
+    localStorage.setItem('actors', JSON.stringify(actors));
   };
 
   handleRemoveActor = (id) => {
@@ -243,6 +262,7 @@ class App extends Component {
     this.setState({
       actors,
     });
+    localStorage.setItem('actors', JSON.stringify(actors));
   };
 
   handleShowHideInitiativeSpinner = (id) => {
@@ -262,6 +282,7 @@ class App extends Component {
     this.setState({
       actors,
     });
+    localStorage.setItem('actors', JSON.stringify(actors));
 
     this.handleShowHideInitiativeSpinner();
   };
