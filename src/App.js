@@ -124,8 +124,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // console.log(localStorage.actors ? JSON.parse(localStorage.actors) : 'No actors saved');
-    // localStorage.clear();
     this.handleLoadStoredActors();
   }
 
@@ -234,9 +232,7 @@ class App extends Component {
     this.setState({
       actors,
     });
-    console.log(actors, JSON.parse(localStorage.actors));
     localStorage.setItem('actors', JSON.stringify(actors));
-    console.log(actors, JSON.parse(localStorage.actors));
   };
 
   handleEditActor = (event, id) => {
