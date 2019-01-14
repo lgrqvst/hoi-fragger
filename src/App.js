@@ -237,10 +237,11 @@ class App extends Component {
 
   handleEditActor = (event, id) => {
     const actors = [...this.state.actors].filter((actor) => {
-      if (actor.id === id) {
-        actor.name = event.target.value;
+      const a = { ...actor };
+      if (a.id === id) {
+        a.name = event.target.value;
       }
-      return actor;
+      return a;
     });
     this.setState({
       actors,
@@ -270,10 +271,11 @@ class App extends Component {
 
   setInitiative = (id, initiative) => {
     const actors = [...this.state.actors].filter((actor) => {
-      if (actor.id === id) {
-        actor.initiative = initiative;
+      const a = { ...actor };
+      if (a.id === id) {
+        a.initiative = initiative;
       }
-      return actor;
+      return a;
     });
     this.setState({
       actors,
