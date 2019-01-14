@@ -236,7 +236,7 @@ class App extends Component {
   };
 
   handleEditActor = (event, id) => {
-    const actors = [...this.state.actors].filter((actor) => {
+    const actors = [...this.state.actors].map((actor) => {
       const a = { ...actor };
       if (a.id === id) {
         a.name = event.target.value;
@@ -250,12 +250,7 @@ class App extends Component {
   };
 
   handleRemoveActor = (id) => {
-    const actors = [...this.state.actors].filter((actor) => {
-      if (actor.id !== id) {
-        return actor;
-      }
-      return false;
-    });
+    const actors = [...this.state.actors].filter(actor => actor.id !== id);
     this.setState({
       actors,
     });
@@ -270,7 +265,7 @@ class App extends Component {
   };
 
   setInitiative = (id, initiative) => {
-    const actors = [...this.state.actors].filter((actor) => {
+    const actors = [...this.state.actors].map((actor) => {
       const a = { ...actor };
       if (a.id === id) {
         a.initiative = initiative;
