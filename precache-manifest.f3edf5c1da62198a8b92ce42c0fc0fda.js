@@ -8,15 +8,15 @@ self.__precacheManifest = [
     "url": "/hoi-fragger/static/js/runtime~main.9e43728c.js"
   },
   {
-    "revision": "f0fae7b2a020ca676320",
-    "url": "/hoi-fragger/static/js/main.f0fae7b2.chunk.js"
+    "revision": "666e037f9e6b918d0493",
+    "url": "/hoi-fragger/static/js/main.666e037f.chunk.js"
   },
   {
     "revision": "bc3c3ba1bab4bbca8af5",
     "url": "/hoi-fragger/static/js/1.bc3c3ba1.chunk.js"
   },
   {
-    "revision": "5fce0cc5e95383856500de3f7f656ff2",
+    "revision": "879803734070f254925d81095b1e5fcc",
     "url": "/hoi-fragger/index.html"
   }
 ];
